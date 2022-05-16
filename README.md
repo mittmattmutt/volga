@@ -1,5 +1,5 @@
 # volga
-A python and js/html tool for storing, comparing, and nicely presenting news wires. Before I finish this md, see medium.com/@mittmattmutt for more information.
+A python and js/html tool for storing, comparing, and nicely presenting news wires. Before I finish this md, see [here](https://mittmattmutt.medium.com/an-os-tool-for-storing-searching-and-displaying-news-wires-b9c81dbbbe3a)  for more information.
 
 # Necessities
 You'll need python and all the libraries in volga.py
