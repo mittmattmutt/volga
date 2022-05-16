@@ -23,9 +23,10 @@ var telegram_lemmatized={"01.03.2022 01:13:1": "правительство Яп�
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="513_lemmatized_ua.js"></script>
 <script src="513_raw_ua.js"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-And change the last two <script src>'s so that they point towards the .js's you made above.
+* And change the last two <script src>'s so that they point towards the .js's you made above.
 
 # Thing 2
   * In a rush to finish this, I didn't end up implementing in the html a way to autogenerate the x-axis. So you need to enter it manually. Go to l155, which reads
