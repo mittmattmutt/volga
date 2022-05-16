@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<title>Volga</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="513_lemmatized_ua.js"></script>
+<script src="513_raw_ua.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div class="container">
+<div class="row">
+<div class="col">
+  <canvas id="myChart"></canvas>
+</div>
+
+<div class="col">
+<h3>Articles</h3>
+<table class="table" id="article_table">
+<thead>
+<tr>
+<th>Date Time</th>
+<th> Text</th>
+</tr>
+</thead>
+<tbody id="tbod">
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col">
+<input type="text" id="slovo" onclick='document.getElementById("slovo").value=" "'>
+<h3 onclick="draw()"> Click to search the word</h3>
+<h4 id="tb" style="display:none;">You need to enter a word!</h4>
+</div></div></div>
+
+<body>
+
+</body>
+<script>
+days_and_occurrences={};
+console.log(document.getElementById("slovo").value);
+
+function populateTable(x, y)
+{
+var rows=document.getElementById("article_table").rows.length;
+console.log(rows);
+
+for(var i=0;i<rows;i++)
+{
+document.getElementById("article_table").rows[i].innerHTML=""
+console.log("herrre");
+}
+
+nw_x=x;
+x=Math.trunc(x);
+y=Math.trunc(y)
+var table=document.getElementById("article_table")
+total=y
+count=0
+console.log(x);
+console.log(nw_x);
+var array_of_dates=days_and_occurrences[x]
+console.log(array_of_dates);
+
+if(!(typeof array_of_dates[1]===undefined)){
+console.log("I ger here");
+for(var z=1;z<array_of_dates.length;z++)
+{
+console.log("i get here");
+var row = table.insertRow();
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+
+cell1.innerHTML = array_of_dates[z]
+cell2.innerHTML = telegram_raw[array_of_dates[z]]}
+}
+
+}
+
+function getOccurrences(word)
+{
+
+
+
+//var word="германский"
+var locations=[];
+
+for (x=1;x<37;x++)
+{days_and_occurrences[x]=""}
+
+
+for (var keys in telegram_lemmatized)
+{
+//console.log(telegram_lemmatized[keys].indexOf("word"));
+if (telegram_lemmatized[keys].indexOf(word) !== -1)
+{
+locations.push(keys)
+//console.log("i get here");
+}
+}
+console.log(locations.length);
+for(var i=0;i<locations.length;i++)
+{
+var ar=[]
+
+//console.log(locations[i].slice(3,5));
+if(locations[i].slice(3,5)=="05")
+{
+date=parseInt(locations[i].slice(0,2))+30;
+//console.log(date)
+}
+else{
+date=parseInt(locations[i].slice(0,2));}
+
+days_and_occurrences[date.toString()]=days_and_occurrences[date.toString()]+"_"+locations[i]
+
+//console.log("i get here");
+}
+//console.log(JSON.stringify(days_and_occurrences));
+
+for (var x in days_and_occurrences)
+{
+var array=days_and_occurrences[x].split("_")
+days_and_occurrences[x]=array
+}
+
+console.log(Object.values(days_and_occurrences))
+return days_and_occurrences;
+
+}
+console.log(document.getElementById('slovo').innerHTML);
+
+function draw()
+{
+var word=document.getElementById('slovo').value;
+
+if(word==="")
+{
+document.getElementById('tb').style.display="block";
+return;
+}
+else{
+if(document.getElementById('tb').style.display==="block")
+{document.getElementById('tb').style.display="none";}
+}
+
+console.log(word);
+  const labels = Array.from({length : 37}, (_, v) => v+1)
+
+  var data = {
+    labels: labels,
+    datasets: [{
+      label: word,
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: Object.values(getOccurrences(word)).map(x=>x.length-1)
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {
+	  scaleShowValues: true,
+	   scales: {
+        x: {
+            ticks: {
+                autoSkip: false
+            }
+        }
+    },
+		
+    
+        onClick: (e) => {
+            const canvasPosition = Chart.helpers.getRelativePosition(e, myChart);
+
+            // Substitute the appropriate scale IDs
+            const dataX = myChart.scales.x.getValueForPixel(canvasPosition.x);
+            const dataY = myChart.scales.y.getValueForPixel(canvasPosition.y);
+            console.log(dataX);
+			populateTable(dataX,dataY);
+	console.log(dataY);
+        }
+		
+		
+		
+		
+    }
+  };
+
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+} 
+ 
+</script>
+
+<body>
