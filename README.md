@@ -4,7 +4,7 @@ A python and js/html tool for storing, comparing, and nicely presenting news wir
 # Necessities
 You'll need python and all the libraries in volga.py
 
-More importantly, you'll need to do this, having i) downloaded and ii) read and lemmatized whatever sets of stories you want.
+More importantly, you'll need to do the below, having i) downloaded and ii) read and lemmatized whatever sets of stories you want. 
 # Thing 1
 * You will have a lemmatized and a plain version of your stories.
 * Copy them to the directory of the html. Open the lemmatized one in text editor, and add "var telegram_lemmatized=" before the dict, so the text reads something like:
