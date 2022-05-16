@@ -7,9 +7,9 @@ You'll need python and all the libraries in volga.py
 More importantly, you'll need to do the below, having i) downloaded and ii) read and lemmatized whatever sets of stories you want. 
 # Thing 1
 * You will have a lemmatized and a plain version of your stories.
-* Copy them to the directory of the html. Open the lemmatized one in text editor, and add "var telegram_lemmatized=" before the dict, so the text reads something like:
+* Copy them to the directory of the html. Open the lemmatized one in text editor, and add ```var telegram_lemmatized=``` before the dict, so the text reads something like:
 
-var telegram_lemmatized={"01.03.2022 01:13:1": "правительство Япония утвердить введение санкция против шести представитель руководство Россия , включая президент Владимира Путин ...
+```var telegram_lemmatized={"01.03.2022 01:13:1": "правительство Япония утвердить введение санкция против шести представитель руководство Россия , включая президент Владимира Путин ...```
 
 * Then rename the file with a .js extension.
 
@@ -19,18 +19,18 @@ var telegram_lemmatized={"01.03.2022 01:13:1": "правительство Яп�
 
 * Next, and finally, open index.html in a text editor, find this bit:
 
-<title>Volga</title>
+```<title>Volga</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="513_lemmatized_ua.js"></script>
 <script src="513_raw_ua.js"></script>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+```
 
 * And change the last two <script src>'s so that they point towards the .js's you made above.
 
 # Thing 2
   * In a rush to finish this, I didn't end up implementing in the html a way to autogenerate the x-axis. So you need to enter it manually. Go to l155, which reads
-  const labels = Array.from({length : 37}, (_, v) => v+1)
+  ```const labels = Array.from({length : 37}, (_, v) => v+1)```
   
   And change 37 to how many days coverage you have.
   
