@@ -1,6 +1,8 @@
 # volga
 A python and js/html tool for storing, comparing, and nicely presenting news wires. Before I finish this md, see [here](https://mittmattmutt.medium.com/an-os-tool-for-storing-searching-and-displaying-news-wires-b9c81dbbbe3a)  for more information.
 
+__I recommend not using this at the moment--the same functionality can be achieved much easier by i) ditching all the python stuff (the reader isn't necessary because Telegram lets you download in JSON, the lemmatizer isn't neccessary because arguably the most important words are names it struggles with); ii) expanding the js graphing to include comparisions and iii) using the HTML5 file api to let users send data to an app that does everything client side, making this essentially no-code thus way more user friendly. I'll change it in the next couple of days__ 
+
 # Necessities
 You'll need python and all the libraries in volga.py
 
